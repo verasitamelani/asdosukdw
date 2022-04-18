@@ -5,9 +5,10 @@
       </ul>
     </form>
     <form action="/logout" method="POST">
+    @csrf
+    {{-- <input type="hidden" name="_method" value="PUT"> --}}
     <ul class="navbar-nav navbar-right">
-        <button class="btn btn-warning" tabindex="3" type="submit">Logout</button>
-        @csrf
+        <button class="btn btn-warning" type="submit">Logout</button>
     </ul>
     </form>
   </nav>

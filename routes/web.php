@@ -21,20 +21,21 @@ use App\Http\Controllers\AdminController;
 Route::get('/', [LoginController::class, 'index']);
 Route::post('/',[LoginController::class,'authenticate']);
 
-Route::post('/logout',[LoginController::class,'logout']);
+// Route::post('/logout',[LoginController::class,'logout']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 //asisten dosen
-Route::get('/asisten', [AsistenController::class, 'index'])->middleware('asisten');
+Route::get('/asisten', [AsistenController::class, 'index']);
 Route::get('/presensi', [AsistenController::class, 'presensi']);
 
-//asisten dosen
-Route::get('/dosen', [DosenController::class, 'index'])->middleware('dosen');
+//dosen
+Route::get('/dosen', [DosenController::class, 'index']);
 Route::get('/detail', [DosenController::class, 'detaildosen']);
 Route::get('/dsnpresensi', [DosenController::class, 'dsnpresensi']);
 Route::get('/buatpresensi', [DosenController::class, 'buatpresensi']);
 
 //Admin
-Route::get('/admin', [AdminController::class, 'index'])->middleware('admin');
+Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/adduser', [AdminController::class, 'adduser']);
 Route::get('/edituser', [AdminController::class, 'edituser']);
 
