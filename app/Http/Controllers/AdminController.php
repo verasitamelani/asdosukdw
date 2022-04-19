@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Matakuliah;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -19,7 +21,43 @@ class AdminController extends Controller
     }
 
     public function dtmk(){
-        return view('admin.dtmk');
+        $mk = Matakuliah::orderBy('id_mk')->paginate(10);
+        return view('admin.dtmk', compact('mk'));
+    }
+
+    public function dtmkadd(){
+        return view('admin.dtmkadd');
+    }
+
+    public function dtmkaddsave(Request $request){
+        $request->validate([
+            'nama_mk' => 'required',
+            'kode_mk' => 'required',
+            'jenis_mk' => 'required',
+        ]);
+        Matakuliah::create($request->all());
+        return redirect('/dtmk')->with('successtambah', 'Data Berhasil Ditambahkan');
+    }
+
+    public function dtmkedit($id){
+        $mk = Matakuliah::find($id);
+        return view('admin.dtmkedit', compact('mk'));
+    }
+
+    public function dtmkeditup(Request $request, $id){
+        $request->validate([
+            'nama_mk' => 'required',
+            'kode_mk' => 'required',
+            'jenis_mk' => 'required',
+        ]);
+        Matakuliah::find($id)->update($request->all());
+        return redirect('/dtmk')->with('successedit', 'Data Berhasil Diubah');
+    }
+
+    public function delmk($id){
+        $mk = Matakuliah::find($id);
+        $mk->delete();
+        return redirect('/dtmk')->with('successhapus', 'Data Berhasil Dihapus');
     }
 
     public function dtsmt(){

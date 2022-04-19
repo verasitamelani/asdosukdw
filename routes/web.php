@@ -25,21 +25,27 @@ Route::post('/',[LoginController::class,'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 //asisten dosen
-Route::get('/asisten', [AsistenController::class, 'index']);
+Route::get('/asisten', [AsistenController::class, 'index'])->middleware('asisten');
 Route::get('/presensi', [AsistenController::class, 'presensi']);
 
 //dosen
-Route::get('/dosen', [DosenController::class, 'index']);
+Route::get('/dosen', [DosenController::class, 'index'])->middleware('dosen');
 Route::get('/detail', [DosenController::class, 'detaildosen']);
 Route::get('/dsnpresensi', [DosenController::class, 'dsnpresensi']);
 Route::get('/buatpresensi', [DosenController::class, 'buatpresensi']);
 
 //Admin
-Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index'])->middleware('admin');
 Route::get('/adduser', [AdminController::class, 'adduser']);
 Route::get('/edituser', [AdminController::class, 'edituser']);
 
+//CRUD DATA MATAKULIAH ADMIN
 Route::get('/dtmk', [AdminController::class, 'dtmk']);
+Route::get('/dtmkadd', [AdminController::class, 'dtmkadd']);
+Route::post('/dtmkaddsave', [AdminController::class, 'dtmkaddsave']);
+Route::get('/dtmkedit/{id}', [AdminController::class, 'dtmkedit']);
+Route::put('/dtmkeditup/{id}', [AdminController::class, 'dtmkeditup']);
+Route::get('delmk/{id}', [AdminController::class, 'delmk']);
 
 Route::get('/dtsmt', [AdminController::class, 'dtsmt']);
 
