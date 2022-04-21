@@ -30,7 +30,7 @@ Route::get('/presensi', [AsistenController::class, 'presensi']);
 
 //dosen
 Route::get('/dosen', [DosenController::class, 'index'])->middleware('dosen');
-Route::get('/detail', [DosenController::class, 'detaildosen']);
+Route::get('/detail/{id}', [DosenController::class, 'detaildosen']);
 Route::get('/dsnpresensi', [DosenController::class, 'dsnpresensi']);
 Route::get('/buatpresensi', [DosenController::class, 'buatpresensi']);
 

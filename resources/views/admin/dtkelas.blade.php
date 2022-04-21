@@ -43,22 +43,25 @@
                       </tr>
                     </thead>
                     <tbody>
+                    @foreach($kelas as $kls)
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Praktikum Basis Data</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>A</td>
-                        <td>Selasa</td>
-                        <td>07:30</td>
-                        <td>08:45</td>
+                        <th scope="row">{{ $no++ }}</th>
+                        <td>{{ $kls->nama_mk }}</td>
+                        <td>{{ $kls->sks }}</td>
+                        <td>{{ $kls->smt }}</td>
+                        <td>{{ $kls->grup }}</td>
+                        <td>{{ $kls->hari }}</td>
+                        <td>{{ $kls->jam_mulai }}</td>
+                        <td>{{ $kls->jam_selesai }}</td>
                         <td><a href="" type="button" class="btn btn-warning btn-sm">Edit</a>
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </td>
                       </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
+                {{ $kelas->links() }}
         </div>
       </div>
   </section>

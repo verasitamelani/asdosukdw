@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Matakuliah;
+use App\Models\DetailKelas;
+use App\Models\Kelas;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -69,11 +71,21 @@ class AdminController extends Controller
     }
 
     public function dtkelas(){
-        return view('admin.dtkelas');
+        $kelas = Kelas::join('matkul','matkul.id_mk','=','kelas.id_mk')
+        ->join('users','users.id','=','kelas.id')->paginate(2);
+        $no=1;
+        return view('admin.dtkelas', compact('kelas','no'));
     }
 
     public function dtdetail(){
-        return view('admin.dtdetail');
+        $detail = DetailKelas::join('kelas','kelas.id_kelas','=','detail_kelas.id_kelas')
+        ->join('matkul','matkul.id_mk','=','kelas.id_mk')
+        ->join('users','users.id','=','detail_kelas.id')
+        ->get();
+        $no=1;
+        // return $detail;
+
+        return view('admin.dtdetail', compact('detail','no'));
     }
 
     public function dtpresensi(){

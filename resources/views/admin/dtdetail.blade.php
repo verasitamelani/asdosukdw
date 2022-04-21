@@ -39,18 +39,21 @@
                       </tr>
                     </thead>
                     <tbody>
+                    @foreach($detail as $dt)
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Praktikum Basis Data</td>
-                        <td>A</td>
-                        <td>Veronika Verasita Melani</td>
+                        <th scope="row">{{ $no++ }}</th>
+                        <td>{{ $dt->nama_mk }}</td>
+                        <td>{{ $dt->grup }}</td>
+                        <td>{{ $dt->nama }}</td>
                         <td><a href="" type="button" class="btn btn-warning btn-sm">Edit</a>
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </td>
                       </tr>
+                    @endforeach
                     </tbody>
                   </table>
                 </div>
+                {{-- {{ $detail->links() }} --}}
         </div>
       </div>
   </section>

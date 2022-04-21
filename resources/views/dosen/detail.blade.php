@@ -16,7 +16,7 @@
 <section class="section">
     <div class="section-body">
         <ul class="breadcrumb mb-2">
-            <h1 class="section-title"><a href="dosen" class="text-dark">Dashboard</a> > </h1>
+            <h1 class="section-title"><a href="/dosen" class="text-dark">Dashboard</a> > </h1>
             <h1 class="section-title text-warning"> Detail</h1>
         </ul>
         <div class="card3 mt-0">
@@ -32,11 +32,13 @@
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach ($dk as $dk1)
                         <tr>
-                          <th scope="row">1</th>
-                          <td>72190277</td>
-                          <td>Veronika Verasita Melani</td>
+                            <th scope="row">{{ $no++ }}</th>
+                          <td> {{ $dk1->nim_nidn }} </td>
+                          <td>{{ $dk1->nama }} </td>
                         </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>

@@ -9,7 +9,7 @@
       </div>
       <ul class="sidebar-menu">
           <li class="menu-header"> </li>
-          <li class="active"><a href="dosen"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
+          <li class="active"><a href="/dosen"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
           <li><a class="nav-link" href="dsnpresensi"><i class="fas fa-file-alt"></i> <span>Data Presensi</span></a></li>
     </aside>
   </div>
@@ -32,14 +32,16 @@
                       </tr>
                     </thead>
                     <tbody>
+                    @foreach ($detail as $dt)
                       <tr>
-                        <td>Senin</td>
-                        <td>13:20-14:45</td>
-                        <td>Praktikum Basis Data</td>
-                        <td>A</td>
-                        <td><a href="detail" type="button" class="btn btn-success btn-sm">Detail</a>
+                        <td>{{ $dt-> hari }}</td>
+                        <td>{{ $dt-> jam_mulai }}</td>
+                        <td>{{ $dt-> nama_mk }}</td>
+                        <td>{{ $dt-> grup }}</td>
+                        <td><a href="{{ url('detail/'.$dt->id_kelas) }}" type="button" class="btn btn-success btn-sm">Detail</a>
                         </td>
                       </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
