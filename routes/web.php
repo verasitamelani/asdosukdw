@@ -47,15 +47,31 @@ Route::get('/dtmkedit/{id}', [AdminController::class, 'dtmkedit']);
 Route::put('/dtmkeditup/{id}', [AdminController::class, 'dtmkeditup']);
 Route::get('delmk/{id}', [AdminController::class, 'delmk']);
 
+//CRUD DATA SEMESTER ADMIN
 Route::get('/dtsmt', [AdminController::class, 'dtsmt']);
 
+//CRUD DATA RUMUS ADMIN
 Route::get('/dtrms', [AdminController::class, 'dtrms']);
 
+//CRUD DATA KELAS ADMIN
 Route::get('/dtkelas',  [AdminController::class, 'dtkelas']);
+Route::get('/dtkelasadd',  [AdminController::class, 'dtkelasadd']);
+Route::post('/dtkelassave',  [AdminController::class, 'dtkelassave']);
+Route::get('/dtkelasedit/{id}',  [AdminController::class, 'dtkelasedit']);
+Route::put('/dtkelaseditup/{id}', [AdminController::class, 'dtkelaseditup']);
+Route::get('/delkelas/{id}',  [AdminController::class, 'delkelas']);
 
+//CRUD DATA DETAIL KELAS ADMIN
 Route::get('/dtdetail',  [AdminController::class, 'dtdetail']);
+Route::get('/dtdetailadd',  [AdminController::class, 'dtdetailadd']);
+Route::post('/dtdetailsave',  [AdminController::class, 'dtdetailsave']);
+Route::get('/dtdetailedit/{id}',  [AdminController::class, 'dtdetailedit']);
+Route::put('/dtdetaileditup/{id}', [AdminController::class, 'dtdetaileditup']);
+Route::get('/deldetail/{id}',  [AdminController::class, 'deldetail']);
 
+//DATA PRESENSI ADMIN
 Route::get('/dtpresensi',  [AdminController::class, 'dtpresensi']);
+Route::get('/dtpresensi2/{id}',  [AdminController::class, 'dtpresensi2']);
 
 Route::get('/finalisasi', [AdminController::class, 'finalisasi']);
 

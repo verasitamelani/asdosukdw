@@ -21,10 +21,25 @@
           <li><a class="nav-link" href="arsip"><i class="fas fa-archive"></i> <span>Data Arsip Slip Gaji</span></a></li>
     </aside>
   </div>
+  @if ($message = Session::get('successtambah'))
+  <div class="alert alert-warning">
+      <p>{{ $message }}</p>
+  </div>
+@endif
+@if ($message = Session::get('successedit'))
+  <div class="alert alert-warning">
+      <p>{{ $message }}</p>
+  </div>
+@endif
+@if ($message = Session::get('successhapus'))
+  <div class="alert alert-warning">
+      <p>{{ $message }}</p>
+  </div>
+@endif
 <section class="section">
     <div class="section-body">
         <h1 class="section-title mb-3"> Data Detail Kelas</h1>
-        <a href="" type="button" class="btn btn-outline-warning mb-3" tabindex="3">Tambah Data</a>
+        <a href="/dtdetailadd" type="button" class="btn btn-outline-warning mb-3" tabindex="3">Tambah Data</a>
         <div class="card mt-0">
             <div class="card-body">
                 <div class="table-responsive">
@@ -39,21 +54,21 @@
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach($detail as $dt)
+                    @foreach($detail as $no => $dt)
                       <tr>
-                        <th scope="row">{{ $no++ }}</th>
+                        <th scope="row">{{ ++$no + ($detail->currentPage()-1) * $detail->perPage() }}</th>
                         <td>{{ $dt->nama_mk }}</td>
                         <td>{{ $dt->grup }}</td>
                         <td>{{ $dt->nama }}</td>
-                        <td><a href="" type="button" class="btn btn-warning btn-sm">Edit</a>
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        <td><a href="dtdetailedit/{{ $dt->id_detail }}" type="button" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="deldetail/{{ $dt->id_detail }}" type="button" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                       </tr>
                     @endforeach
                     </tbody>
                   </table>
                 </div>
-                {{-- {{ $detail->links() }} --}}
+                {{ $detail->links() }}
         </div>
       </div>
   </section>

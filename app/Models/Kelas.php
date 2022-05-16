@@ -19,4 +19,5 @@ class Kelas extends Model
     public function Kelas(){
         return $this->belongTo('App\Users');
     }
+
 }

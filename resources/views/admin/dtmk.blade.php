@@ -50,7 +50,7 @@
                   <table class="table table-sm">
                     <thead>
                       <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">No</th>
                         <th scope="col">Kode Matakuliah</th>
                         <th scope="col">Nama Matakuliah</th>
                         <th scope="col">Jenis</th>
@@ -58,9 +58,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach ($mk as $matkul)
+                    @foreach ($mk as $no => $matkul)
                       <tr>
-                        <th scope="row">{{ $matkul-> id_mk}}</th>
+                        <th scope="row">{{ ++$no + ($mk->currentPage()-1) * $mk->perPage() }}</th>
                         <td>{{ $matkul-> kode_mk}}</td>
                         <td>{{ $matkul-> nama_mk }}</td>
                         <td>{{ $matkul-> jenis_mk }}</td>

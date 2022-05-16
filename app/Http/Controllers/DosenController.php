@@ -25,10 +25,9 @@ class DosenController extends Controller
     public function detaildosen($id){
         $dk = DetailKelas::join('kelas','kelas.id_kelas','=','detail_kelas.id_kelas')
         ->join('users','users.id','=','detail_kelas.id')
-        ->where('detail_kelas.id_kelas','=',$id)
-        ->get();
+        ->where('detail_kelas.id_kelas','=',$id)->paginate(5);
         $no=1;
-        return view('dosen.detail',[
+        return view('dosen.detaildosen',[
             'dk' => $dk,
             'no' => $no
         ]);

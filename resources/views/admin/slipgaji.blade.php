@@ -26,36 +26,11 @@
         <h1 class="section-title mb-5"> Data Slip Gaji </h1>
         <p class="section-lead"> Program Studi Universitas Kristen Duta Wacana</p>
         <div class="row ml-0">
+            @foreach($prodi as $pd)
             <div class="statistic__item mr-5">
-                <h3 class="title-tulisan"><a class="text-warning" href="">Sarjana Filsafat Keilahian</a></h3>
+                <h3 class="title-tulisan"><a class="text-warning" href="/slipgaji2/{{ $pd->id_prodi }}">{{ $pd->nama_prodi }}</a></h3>
             </div>
-            <div class="statistic__item mr-5">
-                <h3 class="title-tulisan"><a class="text-warning" href="">Arsitektur</a></h3>
-            </div>
-            <div class="statistic__item mr-5">
-                <h3 class="title-tulisan"><a class="text-warning" href="">Desain Produk</a></h3>
-            </div>
-            <div class="statistic__item mr-5">
-                <h3 class="title-tulisan"><a class="text-warning" href="">Biologi</a></h3>
-            </div>
-            <div class="statistic__item mr-5">
-                <h3 class="title-tulisan"><a class="text-warning" href="">Kedokteran</a></h3>
-            </div>
-            <div class="statistic__item mr-5">
-                <h3 class="title-tulisan"><a class="text-warning" href="">Manajemen</a></h3>
-            </div>
-            <div class="statistic__item mr-5">
-                <h3 class="title-tulisan"><a class="text-warning" href="">Akuntansi</a></h3>
-            </div>
-            <div class="statistic__item mr-5">
-                <h3 class="title-tulisan"><a class="text-warning" href="">Informatika</a></h3>
-            </div>
-            <div class="statistic__item mr-5">
-                <h3 class="title-tulisan"><a class="text-warning" href="">Sistem Informasi</a></h3>
-            </div>
-            <div class="statistic__item mr-5">
-                <h3 class="title-tulisan"><a class="text-warning" href="">Pendidikan Bahasa Inggris</a></h3>
-            </div>
+            @endforeach
         </div>
   </section>
 </div>
