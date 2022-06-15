@@ -119,30 +119,34 @@ class AdminController extends Controller
 
     //DATA MATAKULIAH
     public function dtmk(){
-        $mk = Matakuliah::orderBy('id_mk')->paginate(10);
+        $mk = Matakuliah::join('prodi','prodi.id_prodi','=','matkul.id_prodi')->paginate(10);
         return view('admin.dtmk', compact('mk'));
     }
     public function dtmkadd(){
-        return view('admin.dtmkadd');
+        $prodi = Prodi::all();
+        return view('admin.dtmkadd', compact('prodi'));
     }
     public function dtmkaddsave(Request $request){
         $request->validate([
             'nama_mk' => 'required',
             'kode_mk' => 'required',
             'jenis_mk' => 'required',
+            'id_prodi' => 'required',
         ]);
         Matakuliah::create($request->all());
         return redirect('/dtmk')->with('successtambah', 'Data Berhasil Ditambahkan');
     }
     public function dtmkedit($id){
         $mk = Matakuliah::find($id);
-        return view('admin.dtmkedit', compact('mk'));
+        $prodi = Prodi::all();
+        return view('admin.dtmkedit', compact('mk','prodi'));
     }
     public function dtmkeditup(Request $request, $id){
         $request->validate([
             'nama_mk' => 'required',
             'kode_mk' => 'required',
             'jenis_mk' => 'required',
+            'id_prodi' => 'required',
         ]);
         Matakuliah::find($id)->update($request->all());
         return redirect('/dtmk')->with('successedit', 'Data Berhasil Diubah');

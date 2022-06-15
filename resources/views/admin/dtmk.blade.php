@@ -54,6 +54,7 @@
                         <th scope="col">Kode Matakuliah</th>
                         <th scope="col">Nama Matakuliah</th>
                         <th scope="col">Jenis</th>
+                        <th scope="col">Prodi</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
@@ -64,6 +65,7 @@
                         <td>{{ $matkul-> kode_mk}}</td>
                         <td>{{ $matkul-> nama_mk }}</td>
                         <td>{{ $matkul-> jenis_mk }}</td>
+                        <td>{{ $matkul-> nama_prodi }}</td>
                         <td><a href="dtmkedit/{{ $matkul->id_mk }}" type="button" class="btn btn-warning btn-sm">Edit</a>
                             <a href="delmk/{{ $matkul->id_mk }}" type="button" class="btn btn-danger btn-sm">Delete</a>
                         </td>

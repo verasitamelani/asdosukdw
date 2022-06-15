@@ -105,20 +105,21 @@ class DosenController extends Controller
         // ->orderBy('id_detail', 'DESC')
         ->get('id_detail');
 
-        foreach($detail as $dt=>$value){
-            $databaru = array(
-            'id_detail'=> $detail,
-            'tgl' => $req->tgl,
-            'pertemuan'=>$req->pertemuan,
-            );
-        }
-        // for($i=0; $i<count($data); $i++){
+        // foreach($req as $dt=>$value){
         //     $databaru = [
-        //         'id_detail'=> $detail,
-        //         'tgl'=> $req->tgl[$i],
-        //         'pertemuan'=>$req->pertemuan[$i],
+        //     'id_detail'=> $detail,
+        //     'tgl' => $req->tgl,
+        //     'pertemuan'=>$req->pertemuan,
         //     ];
         // }
+
+        for($i=0; $i<count($data); $i++){
+            $databaru = [
+                'id_detail'=> $detail,
+                'tgl'=> $req->tgl[$i],
+                'pertemuan'=>$req->pertemuan[$i],
+            ];
+        }
         // $databaru[] = $req->id_detail;
         return $databaru;
         // Absensi::create($databaru);

@@ -67,8 +67,8 @@
                         <td>{{ $kls->sks }}</td>
                         <td>{{ $kls->grup }}</td>
                         <td>{{ $kls->hari }}</td>
-                        <td>{{ $kls->jam_mulai }}</td>
-                        <td>{{ $kls->jam_selesai }}</td>
+                        <td>{{ date('H:i', strtotime($kls->jam_mulai)) }}</td>
+                        <td>{{ date('H:i', strtotime($kls->jam_selesai)) }}</td>
                         <td>{{ $kls->nama }}</td>
                         <td><a href="dtkelasedit/{{ $kls->id_kelas }}" type="button" class="btn btn-warning btn-sm">Edit</a>
                             <a href="delkelas/{{ $kls->id_kelas }}" type="button" class="btn btn-danger btn-sm">Delete</a>

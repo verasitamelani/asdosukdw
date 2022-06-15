@@ -56,6 +56,16 @@
                     </div>
                     <label class="text-danger"> *1:Praktikum, 2:Teori</label>
                 </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Prodi</label>
+                    <div class="col-sm-8">
+                    <select class="form-control" name="id_prodi">
+                    <option value="">Pilih</option>
+                    @foreach($prodi as $pd)
+                    <option value="{{ $pd->id_prodi }}" @if($pd->id_prodi == $mk->id_prodi) selected @endif>{{ $pd->nama_prodi }}</option>
+                    @endforeach
+                    </select>
+                </div>
               </div>
               <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary">Simpan</button>
