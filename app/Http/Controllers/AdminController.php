@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Crypt;
 class AdminController extends Controller
 {
     public function index(){ //datauser
-        $mhsdsn = User::join('prodi','prodi.id_prodi','=','users.id_prodi')->paginate(5);
+        $mhsdsn = User::join('prodi','prodi.id_prodi','=','users.id_prodi')->paginate(10);
         return view('admin.dtmhsdsn',compact('mhsdsn'));
     }
 
@@ -80,7 +80,7 @@ class AdminController extends Controller
 
     //DATA SEMESTER
     public function dtsmt(){//data semester
-        $smt = Semester::all()->paginate(10);
+        $smt = Semester::orderBy('id_smt')->paginate(10);
         return view('admin.dtsmt', compact('smt'));
     }
     public function addsmt(){

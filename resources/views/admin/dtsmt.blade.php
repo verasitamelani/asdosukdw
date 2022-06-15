@@ -68,6 +68,7 @@
                     </tbody>
                   </table>
                 </div>
+                {{ $smt->links() }}
         </div>
       </div>
   </section>
