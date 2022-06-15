@@ -13,6 +13,7 @@
           <li class="active"><a class="nav-link" href="dsnpresensi"><i class="fas fa-file-alt"></i> <span>Data Presensi</span></a></li>
     </aside>
   </div>
+
 <section class="section">
     <div class="section-body">
             <ul class="breadcrumb mb-2">
@@ -20,47 +21,39 @@
                 <h1 class="section-title text-warning"> Buat Presensi</h1>
             </ul>
             <div class="card mt-0">
-                <form action="/dsnpresensi" method="" class="">
-                  {{-- <div class="card-header">
-                    <h4 class="section-title" >Form Tambah Data Asisten Dosen </h4>
-                  </div> --}}
+                <form action="/savepresensi" method="POST" class="">
+                @csrf
+                <div class="form" id="form">
+                @foreach($kls as $m )
+                <input type="hidden" name="id_detail[]" value="{{ $m->id_detail }}">
+                @endforeach
                   <div class="card-body">
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Tanggal</label>
-                      <div class="col-sm-4"> <input type="date" class="form-control" required>
+                      <div class="col-sm-4"> <input type="date" class="form-control" name="tgl[]" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label">Pertemuan Ke</label>
                       <div class="col-sm-2">
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control" name="pertemuan[]" required>
                       </div>
                       <p class="text-danger">*isi berupa angka, contoh : 10</p>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Matakuliah</label> {{-- pilihan matakuliah berdasarkan dosen yg mengampu/kalau satu didefault --}}
                         <div class="col-sm-4">
-                        <select class="form-control">
-                          <option>Praktikum Sistem Basis Data</option>
-                          <option>Sistem Basis Data</option>
-                          <option>Matrikulasi</option>
+                        <select class="form-control" id="kelas" name="id_kelas" >
+                        @foreach($kls as $m )
+                          <option value="{{ $m->id_kelas }}"> {{ $m->nama_mk }}  {{$m->grup}} </option>
+                        @endforeach
                         </select>
                         </div>
                       </div>
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Grup</label>
-                        <div class="col-sm-4">
-                        <select class="form-control">
-                          <option>A</option>
-                          <option>B</option>
-                          <option>C</option>
-                        </select>
-                        </div>
-                      </div>
-                  </div>
                   <div class="card-footer text-right col-sm-7">
-                    <button class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                   </div>
+                </div>
                 </form>
               </div>
           </div>

@@ -18,7 +18,7 @@
         <h1 class="section-title mb-0"> Hello! {{ auth()->user()-> nama }} </h1>
         <p class="section-lead mt-15 mb-0">Welcome Back To <img src="../assets/img/asdosUKDW.png" width="80" ></p>
 
-        <a href="#" type="button" class="btn btn-outline-warning mb-3" tabindex="3">Cetak Slip Gaji</a>
+        <a href="/cetakslip" type="button" class="btn btn-outline-warning mb-3" tabindex="3">Cetak Slip Gaji</a>
 
         <div class="card mt-0">
             <div class="card-body">
@@ -35,27 +35,15 @@
                       </tr>
                     </thead>
                     <tbody>
+                    @foreach ($asisten as $a)
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                        <td>{{ $a-> hari }}</td>
+                        <td>{{ $a-> jam_mulai }} - {{ $a-> jam_selesai }}</td>
+                        <td>{{ $a-> nama_mk}}</td>
+                        <td>{{ $a-> grup }}</td>
+                        <td>{{ $a-> nama }}</td>
                       </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>Jacob</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>Jacob</td>
-                      </tr>
+                    @endforeach
                     </tbody>
                   </table>
                 </div>

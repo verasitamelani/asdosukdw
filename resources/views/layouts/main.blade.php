@@ -68,6 +68,7 @@
 
   <!-- Page Specific JS File -->
   <script src="../assets/js/page/forms-advanced-forms.js"></script>
+  @stack('customscript')
 
 </body>
 </html>

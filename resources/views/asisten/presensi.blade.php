@@ -13,6 +13,11 @@
           <li class="active"><a class="nav-link" href="presensi"><i class="fas fa-file-alt"></i> <span>Presensi</span></a></li>
     </aside>
   </div>
+  @if ($message = Session::get('successtmbh'))
+      <div class="alert alert-warning">
+          <p>{{ $message }}</p>
+      </div>
+@endif
 <section class="section">
     <div class="section-body">
         <div class="card mt-0">
@@ -30,27 +35,26 @@
                       </tr>
                     </thead>
                     <tbody>
+                      @foreach($tampil as $no => $mhs)
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td><button type="submit" class="btn btn-warning btn-sm" tabindex="4">Absen</button></td>
+                      <th scope="row">{{ $no +1 }}</td>
+                      <td>{{ date('d F Y', strtotime($mhs->tgl)) }}</td>
+                      <td>{{ $mhs->pertemuan }}</td>
+                      <td>{{ $mhs->nama_mk }}</td>
+                      <td>
+                        @if( $cd >= 1)
+                        <button type="button" class="btn btn-success btn-sm" id="btn" disabled>Hadir</button>
+                        @else
+                        <form action="/mhspresensi" method="POST" class="d-inline">
+                        @csrf
+                        <input type="hidden" name="id_detail" value="{{ $mhs->id_detail }}">
+                        <input type="hidden" name="pertemuan" value="{{ $mhs->pertemuan}}">
+                        <button type="submit" class="btn btn-success btn-sm" id="btn">Hadir</button>
+                        </form>
+                        @endif
+                        </td>
                       </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td><button type="submit" class="btn btn-warning btn-sm" tabindex="4">Absen</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td><button type="submit" class="btn btn-warning btn-sm" tabindex="4">Absen</button></td>
-                      </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

@@ -50,7 +50,7 @@
                     <div class="col-sm-8">
                     <select class="form-control" name="id">
                     @foreach($users as $user)
-                      <option value="{{ $user->id }}" @if($user->id== $detail->id) selected @endif>{{ $user->nama }} - {{ $user->prodi }}</option>
+                      <option value="{{ $user->id }}" @if($user->id== $detail->id) selected @endif>{{ $user->nama }} - {{ $user->nama_prodi }}</option>
                     @endforeach
                     </select>
                     </div>

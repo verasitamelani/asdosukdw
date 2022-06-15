@@ -21,10 +21,25 @@
           <li><a class="nav-link" href="arsip"><i class="fas fa-archive"></i> <span>Data Arsip Slip Gaji</span></a></li>
     </aside>
   </div>
+@if ($message = Session::get('successtmbh'))
+        <div class="alert alert-warning">
+            <p>{{ $message }}</p>
+        </div>
+@endif
+@if ($message = Session::get('successedit'))
+        <div class="alert alert-warning">
+            <p>{{ $message }}</p>
+        </div>
+@endif
+@if ($message = Session::get('successhps'))
+        <div class="alert alert-warning">
+            <p>{{ $message }}</p>
+        </div>
+@endif
 <section class="section">
     <div class="section-body">
         <h1 class="section-title mb-3"> Data Semester</h1>
-        <a href="" type="button" class="btn btn-outline-warning mb-3" tabindex="3">Tambah Data</a>
+        <a href="/addsmt" type="button" class="btn btn-outline-warning mb-3" tabindex="3">Tambah Data</a>
         <div class="card mt-0">
             <div class="card-body">
                 <div class="table-responsive">
@@ -39,15 +54,17 @@
                       </tr>
                     </thead>
                     <tbody>
+                      @foreach($smt as $no => $s)
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Semester 1</td>
-                        <td>2022/2022</td>
-                        <td>Ganjil</td>
-                        <td><a href="" type="button" class="btn btn-warning btn-sm">Edit</a>
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        <th scope="row">{{ $no +1 }}</th>
+                        <td>Semester {{$s->nama_smt}}</td>
+                        <td>{{$s->tahun}}</td>
+                        <td>Semester {{$s->ket_smt}}</td>
+                        <td><a href="editsmt/{{ $s->id_smt }}" type="button" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="delsmt/{{ $s->id_smt }}" type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </td>
                       </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

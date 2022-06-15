@@ -29,16 +29,16 @@
             <h1 class="section-title text-warning"> {{ $pd->nama_prodi }} </h1>
             @endforeach
         </ul>
-        <div class="card-header-action dropdown show">
-            <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle" aria-expanded="true">Filter</a>
-            <ul class="dropdown-menu dropdown-menu-sm">
-              <li class="dropdown-title">Select Period</li>
-              <li><a href="#" class="dropdown-item">Today</a></li>
-              <li><a href="#" class="dropdown-item">Week</a></li>
-              <li><a href="#" class="dropdown-item active">Month</a></li>
-              <li><a href="#" class="dropdown-item">This Year</a></li>
-            </ul>
-          </div>
+        <div class="form-group row mt-3">
+            <div class="col-sm-2">
+            <select name="bulan" id="bulan" class="form-control filter">
+                <option value="0">Pilih Bulan</option>
+            @foreach($bulan as $bln)
+            <option value="{{ $bln->value }}"> {{ $bln->label }}</option>
+                @endforeach
+            </select>
+            </div>
+        </div>
         <div class="card mt-3">
             <div class="card-body">
                 <div class="table-responsive">
@@ -55,15 +55,15 @@
                         <th scope="col">validitas</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody">
                     @foreach($absen as $no => $absn)
                       <tr>
                         <th scope="row">{{ ++$no + ($absen->currentPage()-1) * $absen->perPage() }}</th>
-                        <td>{{ date('d F Y', strtotime($absn->tgl)) }}</td>
+                        <td>{{ date('F d, Y', strtotime($absn->tgl)) }}</td>
                         <td>{{ $absn->pertemuan }}</td>
                         <td>{{ $absn->nama_mk }}</td>
                         <td>{{ $absn->nama }}</td>
-                        <td>{{ date('H:i', strtotime($absn->jam)) }}</td>
+                        <td>{{ $absn->jam}}</td>
                         <td>{{ $absn->kehadiran }}</td>
                         <td>{{ $absn->ket_vali }}</td>
                       </tr>
@@ -79,3 +79,42 @@
   </section>
 </div>
 @endsection
+@push('customscript')
+<script>
+    var id={!! $id !!}
+    console.log(id)
+
+            $(document).ready(function(){
+                $("#bulan").on('change', function(){
+                    var bulan = $(this).val();
+                    var url = "{{ route('dtpresensitgl', ':id')}}";
+                    url = url.replace(':id', id);
+                    $.ajax({
+                        url : url,
+                        type : "GET",
+                        data : {'bulan':bulan},
+                        dataType : "json",
+                        success:function(data){
+                            console.log(url);
+                            var html = '';
+                            var no = 1;
+                            $.each(data, function(key, data) {
+                                const tgl = new Date(data.tgl);
+                                    html += '<tr>\
+                                        <th>  '+(no++)+' </th>\
+                                        <td> '+tgl.toLocaleString('default', { day: "numeric", year: "numeric", month: "long" })+'</td>\
+                                        <td> '+data.pertemuan+'</td>\
+                                        <td> '+data.nama_mk+'</td>\
+                                        <td> '+data.nama+'</td>\
+                                        <td> '+data.jam+' </td>\
+                                        <td> '+data.kehadiran+' </td>\
+                                        <td> '+data.ket_vali+' </td>\
+                                        </tr>';
+                            });
+                            $("#tbody").html(html);
+                        }
+                    });
+                });
+            });
+</script>
+@endpush

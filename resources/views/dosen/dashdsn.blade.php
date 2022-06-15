@@ -10,12 +10,12 @@
       <ul class="sidebar-menu">
           <li class="menu-header"> </li>
           <li class="active"><a href="/dosen"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
-          <li><a class="nav-link" href="dsnpresensi"><i class="fas fa-file-alt"></i> <span>Data Presensi</span></a></li>
+          <li><a class="nav-link" href="/dsnpresensi"><i class="fas fa-file-alt"></i> <span>Data Presensi</span></a></li>
     </aside>
   </div>
 <section class="section">
     <div class="section-body">
-        <h1 class="section-title mb-0"> Hello! Nama Dosen</h1>
+        <h1 class="section-title mb-0"> Hello! {{ auth()->user()-> nama }} </h1>
         <p class="section-lead mt-15 mb-0">Welcome Back To <img src="../assets/img/asdosUKDW.png" width="80" ></p>
         <div class="card mt-0">
             <div class="card-body">
@@ -35,7 +35,7 @@
                     @foreach ($detail as $dt)
                       <tr>
                         <td>{{ $dt-> hari }}</td>
-                        <td>{{ $dt-> jam_mulai }}</td>
+                        <td>{{ $dt-> jam_mulai }} - {{$dt-> jam_selesai}}</td>
                         <td>{{ $dt-> nama_mk }}</td>
                         <td>{{ $dt-> grup }}</td>
                         <td><a href="{{ url('detail/'.$dt->id_kelas) }}" type="button" class="btn btn-success btn-sm">Detail</a>

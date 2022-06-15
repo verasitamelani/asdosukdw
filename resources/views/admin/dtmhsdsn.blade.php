@@ -21,10 +21,25 @@
           <li><a class="nav-link" href="arsip"><i class="fas fa-archive"></i> <span>Data Arsip Slip Gaji</span></a></li>
     </aside>
   </div>
+@if ($message = Session::get('successtmbh'))
+        <div class="alert alert-warning">
+            <p>{{ $message }}</p>
+        </div>
+@endif
+@if ($message = Session::get('successedit'))
+        <div class="alert alert-warning">
+            <p>{{ $message }}</p>
+        </div>
+@endif
+@if ($message = Session::get('successhps'))
+        <div class="alert alert-warning">
+            <p>{{ $message }}</p>
+        </div>
+@endif
 <section class="section">
     <div class="section-body">
         <h1 class="section-title mb-3"> Data Asisten dan Dosen</h1>
-        <a href="adduser" type="button" class="btn btn-outline-warning mb-3" tabindex="3">Tambah Data</a>
+        <a href="/adduser" type="button" class="btn btn-outline-warning mb-3" tabindex="3">Tambah Data</a>
         <div class="card mt-0">
             <div class="card-body">
                 <div class="table-responsive">
@@ -40,19 +55,22 @@
                       </tr>
                     </thead>
                     <tbody>
+                    @foreach ($mhsdsn as $no => $m)
                       <tr>
-                        <th scope="row">1</th>
-                        <td>72190277</td>
-                        <td>Veronika Verasita Melani</td>
-                        <td>Asisten</td>
-                        <td>Sistem Informasi</td>
-                        <td><a href="edituser" type="button" class="btn btn-warning btn-sm">Edit</a>
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        <th scope="row">{{ ++$no + ($mhsdsn->currentPage()-1) * $mhsdsn->perPage() }}</th>
+                        <td>{{ $m-> nim_nidn }}</td>
+                        <td>{{ $m-> nama }}</td>
+                        <td>{{ $m-> nama_role }}</td>
+                        <td>{{ $m-> nama_prodi }}</td>
+                        <td><a href="edituser/{{ $m->id  }}" type="button" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="deluser/{{ $m->id }}" type="button" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                       </tr>
+                    @endforeach
                     </tbody>
                   </table>
                 </div>
+                {{ $mhsdsn->links() }}
         </div>
       </div>
   </section>

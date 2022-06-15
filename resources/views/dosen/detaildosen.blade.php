@@ -9,8 +9,8 @@
       </div>
       <ul class="sidebar-menu">
           <li class="menu-header"> </li>
-          <li class="active"><a href="dosen"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
-          <li><a class="nav-link" href="dsnpresensi"><i class="fas fa-file-alt"></i> <span> Data Presensi</span></a></li>
+          <li class="active"><a href="/dosen"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
+          <li><a class="nav-link" href="/dsnpresensi"><i class="fas fa-file-alt"></i> <span> Data Presensi</span></a></li>
     </aside>
   </div>
 <section class="section">
@@ -20,30 +20,33 @@
             <h1 class="section-title text-warning"> Detail</h1>
         </ul>
         <div class="card3 mt-0">
-            <div class="card-header section-title">Grup A</div>
-            <div class="card-body" width="100%">
-                <div class="table-responsive">
-                    <table class="table table-sm">
-                      <thead>
-                        <tr>
-                          <th scope="col">No</th>
-                          <th scope="col">Nim</th>
-                          <th scope="col">Nama</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @foreach ($dk as $dk1)
-                        <tr>
-                            <th scope="row">{{ $no++ }}</th>
-                          <td> {{ $dk1->nim_nidn }} </td>
-                          <td>{{ $dk1->nama }} </td>
-                        </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
-                  </div>
-        </div>
-      </div>
+        @if (count($dk)>0)
+        <div class="card-header section-title">Grup </div>
+        <div class="card-body" width="100%">
+            <div class="table-responsive">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th scope="col">No</th>
+                      <th scope="col">Nim</th>
+                      <th scope="col">Nama</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($dk as $dk1)
+                    <tr>
+                      <th scope="row">{{ $no++ }}</th>
+                      <td> {{ $dk1->nim_nidn }} </td>
+                      <td>{{ $dk1->nama }} </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        @else
+        <div class="card-header section-title">"Belum ada Asisten Yang Terdaftar!"</div>
+        @endif
   </section>
 </div>
 @endsection
