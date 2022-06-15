@@ -43,7 +43,7 @@
                     <tbody>
                     @foreach($presensi as $no => $p)
                       <tr>
-                        <th scope="row">{{ $no +1 }}</td>
+                        <th scope="row">{{ ++$no + ($presensi->currentPage()-1) * $presensi->perPage() }}</td>
                         <input type="hidden" name="id_detail" value="{{ $p->id_absensi }}">
                         <input type="hidden" name="id_detail" value="{{ $p->id_detail }}">
 
@@ -51,11 +51,11 @@
                         <td>{{ $p->pertemuan}}</td>
                         <td>{{ $p->nama_mk}}</td>
                         <td>{{ $p->nama}}</td>
-                        <td>{{ $p->jam}}</td>
+                        <td>{{ $p->jam }}</td>
                         <td><div class="badge badge-info">{{$p->kehadiran}}</div></td>
                         <td>
                         @if($p->ket_vali == "valid")
-                        <button type="button" class="btn btn-success btn-sm" disabled>Validasi</button>
+                        <button type="button" class="btn btn-warning btn-sm" disabled>Valid</button>
                         @else
                          <form action="{{ url('validasi/'.$p->id_absensi) }}" method="POST" class="">
                           @csrf
@@ -69,7 +69,7 @@
                     </tbody>
                   </table>
                 </div>
-
+                {{ $presensi->links() }}
         </div>
       </div>
   </section>

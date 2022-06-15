@@ -37,11 +37,11 @@
                     <tbody>
                     @foreach ($asisten as $a)
                       <tr>
-                        <td>{{ $a-> hari }}</td>
-                        <td>{{ $a-> jam_mulai }} - {{ $a-> jam_selesai }}</td>
-                        <td>{{ $a-> nama_mk}}</td>
-                        <td>{{ $a-> grup }}</td>
-                        <td>{{ $a-> nama }}</td>
+                        <td>{{ $a->hari }}</td>
+                        <td>{{ date('H:i', strtotime($a->jam_mulai)) }} - {{ date('H:i', strtotime($a->jam_selesai)) }}</td>
+                        <td>{{ $a->nama_mk}}</td>
+                        <td>{{ $a->grup }}</td>
+                        <td>{{ $a->nama }}</td>
                       </tr>
                     @endforeach
                     </tbody>

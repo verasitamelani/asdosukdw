@@ -17,25 +17,18 @@ class AsistenController extends Controller
 {
     public function index(){
         $ambil = auth()->user()->id;
+
         $asisten = DetailKelas::join('kelas','kelas.id_kelas','=','detail_kelas.id_kelas')
         ->join('matkul','matkul.id_mk','=','kelas.id_mk')
         ->join('users','users.id','=','kelas.id')
+        ->select('kelas.hari','kelas.jam_mulai','kelas.jam_selesai','kelas.grup','matkul.nama_mk','users.nama','detail_kelas.id_detail')
+        ->groupBy('detail_kelas.id_kelas')
         ->where('detail_kelas.id','=',$ambil)
-        ->get();
-
-        $gaji = Gaji::join('detail_kelas','detail_kelas.id_detail','=','gaji.id_detail')
-        ->join('kelas','kelas.id_kelas','=','detail_kelas.id_kelas')
-        ->join('users','users.id','=','detail_kelas.id')
-        ->join('matkul','matkul.id_mk','=','kelas.id_mk')
-        ->join('semester','semester.id_smt','=','kelas.id_smt')
-        ->join('prodi','prodi.id_prodi','=','matkul.id_prodi')
-        ->where('gaji.id','=',$ambil)
         ->get();
 
         return view('asisten.dashmhs',[
             'user' =>  User::find($ambil),
             'asisten' => $asisten,
-            'gaji' => $gaji,
         ]);
     }
 
@@ -97,7 +90,6 @@ class AsistenController extends Controller
             ->where('absensi.kehadiran','=',null)
             ->whereDate('absensi.tgl','=',Carbon::today())
             ->get();
-
 
             $disable = DetailKelas::join('absensi','absensi.id_detail','=','detail_kelas.id_detail')
             ->join('users','users.id','=','detail_kelas.id')
