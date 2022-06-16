@@ -53,7 +53,7 @@ class DosenController extends Controller
         ->where('kelas.id','=',$ambil)
         // ->where('absensi.ket_vali','=',null)
         // ->where('absensi.jam','!=',null)
-        ->orderBy('absensi.tgl', 'DESC')->paginate(10);
+        ->orderBy('absensi.tgl','DESC')->paginate(10);
 
         return view('dosen.dsnpresensi', [
             'user' =>  User::find($ambil),
@@ -87,6 +87,14 @@ class DosenController extends Controller
     }
 
     public function savepresensi(Request $req){
+        // $req->validate([
+        //     'id_detail'=> 'required',
+        //     'tgl' => 'required',
+        //     'pertemuan'=> 'required',
+        // ]);
+        // $id_detail = new Detail;
+        // $data = $req->except('_token');
+
         $data[]= DetailKelas::join('kelas','kelas.id_kelas','=','detail_kelas.id_kelas')
         ->select('detail_kelas.id_detail')
         ->where('detail_kelas.id_kelas','=', $req->id_kelas)
@@ -94,19 +102,26 @@ class DosenController extends Controller
 
         $detail= DetailKelas::join('kelas','kelas.id_kelas','=','detail_kelas.id_kelas')
         ->where('detail_kelas.id_kelas','=', $req->id_kelas)
+        // ->orderBy('id_detail', 'DESC')
         ->get('id_detail');
 
-        for($i=0; $i<count($data); $i++){
-            foreach($detail as $dtl) {
-            $databaru = [
-                'id_detail'=> $dtl->id_detail,
-                'tgl'=> $req->tgl[$i],
-                'pertemuan'=>$req->pertemuan[$i],
-            ];
-            Absensi::create($databaru);
-            }
-
+        foreach($detail as $dt=>$value){
+            $databaru = array(
+            'id_detail'=> $detail,
+            'tgl' => $req->tgl,
+            'pertemuan'=>$req->pertemuan,
+            );
         }
+        // for($i=0; $i<count($data); $i++){
+        //     $databaru = [
+        //         'id_detail'=> $detail,
+        //         'tgl'=> $req->tgl[$i],
+        //         'pertemuan'=>$req->pertemuan[$i],
+        //     ];
+        // }
+        // $databaru[] = $req->id_detail;
+        return $databaru;
+        // Absensi::create($databaru);
         return redirect('/dsnpresensi')->with('successtmbh','Data berhasil ditambahkan');
     }
 

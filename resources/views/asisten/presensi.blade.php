@@ -41,16 +41,18 @@
                       <td>{{ date('d F Y', strtotime($mhs->tgl)) }}</td>
                       <td>{{ $mhs->pertemuan }}</td>
                       <td>{{ $mhs->nama_mk }}</td>
-                      <td>
-                        @if( $cd >= 1)
-                        <button type="button" class="btn btn-success btn-sm" id="btn" disabled>Hadir</button>
-                        @else
-                        <form action="/mhspresensi" method="POST" class="d-inline">
-                        @csrf
-                        <input type="hidden" name="id_detail" value="{{ $mhs->id_detail }}">
-                        <input type="hidden" name="pertemuan" value="{{ $mhs->pertemuan}}">
-                        <button type="submit" class="btn btn-success btn-sm" id="btn">Hadir</button>
-                        </form>
+                      <td> 
+                      @if($cd >= 1)
+                        <button type="button" class="btn btn-secondary btn-sm" id="btn" disabled>Hadir</button>
+                      @elseif($mhs->tgl == $day++ && $time >= $mhs->jam_mulai && $time <= $mhs->jam_selesai) 
+                          <form action="/mhspresensi" method="POST" class="d-inline">
+                          @csrf
+                          <input type="hidden" name="id_detail" value="{{ $mhs->id_detail }}">
+                          <input type="hidden" name="pertemuan" value="{{ $mhs->pertemuan}}">
+                          <button type="submit" class="btn btn-success btn-sm" id="btn">Hadir</button>
+                          </form>
+                          @else
+                          <button type="button" class="btn btn-secondary btn-sm" id="btn" disabled>Hadir</button>
                         @endif
                         </td>
                       </tr>

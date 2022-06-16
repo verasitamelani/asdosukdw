@@ -64,60 +64,39 @@ class AsistenController extends Controller
         return $pdf->stream();
     }
 
-    public function presensi(Request $req){ //tampil presensi, berdasar hari, jam
+    public function presensi(Request $req){ 
         $ambil = Auth::user()->id;
         $now = Carbon::now();
         $time = $now->format('H:i:s');
-        $i = DetailKelas::select('id_kelas')->where('id',$ambil)->get();
-        foreach($i as $j){
-            $k = $j->id_kelas;
-        }
-        $start =  Kelas::where('id_kelas',$k)->get('jam_mulai');
-        foreach($start as $s){
-            $ss = $s->jam_mulai;
-        }
-        $end = Kelas::where('id_kelas',$k)->get('jam_selesai');
-        foreach($end as $e){
-            $ee = $e->jam_selesai;
-        }
-
-        if($time >= $ss && $time <= $ee){
-            $tampil = DB::table('absensi')->join('detail_kelas','detail_kelas.id_detail','=','absensi.id_detail')
+        // $hari = Carbon::today();
+        $day = $now->format('Y-m-d');
+        // dd($day++);
+        $tampil = Absensi::join('detail_kelas','detail_kelas.id_detail','=','absensi.id_detail')
             ->join('kelas','kelas.id_kelas','=','detail_kelas.id_kelas')
             ->join('users','users.id','=','detail_kelas.id')
             ->join('matkul','matkul.id_mk','=','kelas.id_mk')
             ->where('detail_kelas.id','=',$ambil)
-            ->where('absensi.kehadiran','=',null)
-            ->whereDate('absensi.tgl','=',Carbon::today())
+            ->where('absensi.kehadiran','=','')
             ->get();
-
-            $disable = DetailKelas::join('absensi','absensi.id_detail','=','detail_kelas.id_detail')
-            ->join('users','users.id','=','detail_kelas.id')
+        
+        $tgl = Absensi::whereDate('absensi.tgl', date('Y-m-d'))->get();
+        //dd($tgl);
+        $disable = Absensi::join('detail_kelas','detail_kelas.id_detail','=','absensi.id_detail')
             ->join('kelas','kelas.id_kelas','=','detail_kelas.id_kelas')
+            ->join('users','users.id','=','detail_kelas.id')
             ->join('matkul','matkul.id_mk','=','kelas.id_mk')
             ->where('detail_kelas.id','=',$ambil)
             ->where('absensi.kehadiran','=',"hadir")
-            ->whereDate('absensi.tgl','=',Carbon::today())
             ->get();
-            $cd = $disable->count(); //parameter if u/ btn hadir disable
+        $cd = $disable->count();
 
-            return view('asisten.presensi',[
-                'user' => DetailKelas::find($ambil),
-                'tampil' => $tampil,
-                'cd' => $cd,
-            ]);
-        }
-        else{
-            $tampil = DetailKelas::join('absensi','absensi.id_detail','=','detail_kelas.id_detail')
-            ->join('users','users.id','=','detail_kelas.id')
-            ->join('kelas','kelas.id_kelas','=','detail_kelas.id_kelas')
-            ->join('matkul','matkul.id_mk','=','kelas.id_mk')
-            ->where('detail_kelas.id','=',$ambil)
-            ->where('absensi.kehadiran','=','null')
-            ->whereDate('absensi.tgl','=','null')
-            ->get();
-            return view('asisten.presensi', compact('tampil'));
-         }
+        return view('asisten.presensi',[
+            'user' => DetailKelas::find($ambil),
+            'tampil' => $tampil,
+            'time'=> $time,
+            'day'=> $day,
+            'cd'=> $cd,
+       ]); 
     }
 
     public function mhspresensi(Request $req){ //klik-absen
@@ -126,8 +105,7 @@ class AsistenController extends Controller
         $tgl = $now->format('Y-m-d');
         $jam = $now->format('H:i:s');
 
-        DB::table('absensi')
-        ->insert([
+        Absensi::create([
             'id_absensi' => $req->id_absensi,
             'id_detail' => $req->id_detail,
             'tgl' => $tgl,
