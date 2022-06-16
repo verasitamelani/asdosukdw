@@ -44,16 +44,16 @@
                       <td>{{ $mhs->nama_mk }}</td>
                       <td>{{ $mhs->grup }}</td>
                       <td>
-                      @if($cd >= 1)
+                      @if($mhs->kehadiran=="hadir")
                         <button type="button" class="btn btn-secondary btn-sm" id="btn" disabled>Hadir</button>
-                      @elseif($mhs->tgl == $day++ && $time >= $mhs->jam_mulai && $time <= $mhs->jam_selesai)
-                          <form action="{{ url('mhspresensi/'.$mhs->id_absensi) }}" method="POST" class="d-inline">
+                        @elseif($mhs->tgl && $time >= $mhs->jam_mulai && $time <= $mhs->jam_selesai)
+                        <form action="{{ url('mhspresensi/'.$mhs->id_absensi) }}" method="POST" class="d-inline">
                           @csrf
                           @method('PUT')
                           <button type="submit" class="btn btn-success btn-sm" id="btn">Hadir</button>
                           </form>
-                          @else
-                          <button type="button" class="btn btn-secondary btn-sm" id="btn" disabled>Hadir</button>
+                        @else
+                            <button type="button" class="btn btn-secondary btn-sm" id="btn" disabled>Hadir</button>
                         @endif
                         </td>
                       </tr>

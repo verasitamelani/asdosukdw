@@ -68,34 +68,20 @@ class AsistenController extends Controller
         $ambil = Auth::user()->id;
         $now = Carbon::now();
         $time = $now->format('H:i:s');
-        // $hari = Carbon::today();
         $day = $now->format('Y-m-d');
-        // dd($day++);
         $tampil = Absensi::join('detail_kelas','detail_kelas.id_detail','=','absensi.id_detail')
             ->join('kelas','kelas.id_kelas','=','detail_kelas.id_kelas')
             ->join('users','users.id','=','detail_kelas.id')
             ->join('matkul','matkul.id_mk','=','kelas.id_mk')
             ->where('detail_kelas.id','=',$ambil)
             // ->where('absensi.kehadiran','=','')
-            ->get();
-
-        $tgl = Absensi::whereDate('absensi.tgl', date('Y-m-d'))->get();
-        //dd($tgl);
-        $disable = Absensi::join('detail_kelas','detail_kelas.id_detail','=','absensi.id_detail')
-            ->join('kelas','kelas.id_kelas','=','detail_kelas.id_kelas')
-            ->join('users','users.id','=','detail_kelas.id')
-            ->join('matkul','matkul.id_mk','=','kelas.id_mk')
-            ->where('detail_kelas.id','=',$ambil)
-            ->where('absensi.kehadiran','=',"hadir")
-            ->get();
-        $cd = $disable->count();
+            ->orderBy('id_absensi','DESC')->get();
 
         return view('asisten.presensi',[
             'user' => DetailKelas::find($ambil),
             'tampil' => $tampil,
             'time'=> $time,
             'day'=> $day,
-            'cd'=> $cd,
        ]);
     }
 
