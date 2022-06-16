@@ -35,7 +35,7 @@
                     @foreach ($detail as $dt)
                       <tr>
                         <td>{{ $dt-> hari }}</td>
-                        <td>{{ $dt-> jam_mulai }} - {{$dt-> jam_selesai}}</td>
+                        <td>{{ date('H:i', strtotime($dt->jam_mulai)) }} - {{date('H:i', strtotime($dt->jam_selesai))}}</td>
                         <td>{{ $dt-> nama_mk }}</td>
                         <td>{{ $dt-> grup }}</td>
                         <td><a href="{{ url('detail/'.$dt->id_kelas) }}" type="button" class="btn btn-success btn-sm">Detail</a>

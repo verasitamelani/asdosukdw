@@ -21,7 +21,7 @@
         </ul>
         <div class="card3 mt-0">
         @if (count($dk)>0)
-        <div class="card-header section-title">Grup </div>
+        <div class="card-header section-title">Grup {{ $grup->grup }} </div>
         <div class="card-body" width="100%">
             <div class="table-responsive">
                 <table class="table table-sm">

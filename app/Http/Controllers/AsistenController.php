@@ -64,7 +64,7 @@ class AsistenController extends Controller
         return $pdf->stream();
     }
 
-    public function presensi(Request $req){ 
+    public function presensi(Request $req){
         $ambil = Auth::user()->id;
         $now = Carbon::now();
         $time = $now->format('H:i:s');
@@ -78,7 +78,7 @@ class AsistenController extends Controller
             ->where('detail_kelas.id','=',$ambil)
             ->where('absensi.kehadiran','=','')
             ->get();
-        
+
         $tgl = Absensi::whereDate('absensi.tgl', date('Y-m-d'))->get();
         //dd($tgl);
         $disable = Absensi::join('detail_kelas','detail_kelas.id_detail','=','absensi.id_detail')
@@ -96,7 +96,7 @@ class AsistenController extends Controller
             'time'=> $time,
             'day'=> $day,
             'cd'=> $cd,
-       ]); 
+       ]);
     }
 
     public function mhspresensi(Request $req){ //klik-absen
