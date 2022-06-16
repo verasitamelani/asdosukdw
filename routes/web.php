@@ -27,7 +27,7 @@ Route::post('/logout', [LoginController::class, 'logout']);
 //asisten dosen
 Route::get('/asisten', [AsistenController::class, 'index'])->middleware('asisten');
 Route::get('/presensi', [AsistenController::class, 'presensi']);
-Route::post('/mhspresensi',[AsistenController::class, 'mhspresensi']);
+Route::put('/mhspresensi/{id}',[AsistenController::class, 'mhspresensi']);
 Route::get('/cetakslip',[AsistenController::class, 'cetakslip']);
 Route::get('/asisten/pdfslip/{id}',[AsistenController::class, 'pdfslipasisten']);
 

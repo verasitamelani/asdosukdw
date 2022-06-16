@@ -34,6 +34,7 @@
                         <th scope="col">Tanggal</th>
                         <th scope="col">Pertemuan</th>
                         <th scope="col">Matakuliah</th>
+                        <th scope="col">Grup</th>
                         <th scope="col">Asisten</th>
                         <th scope="col">Jam Presensi</th>
                         <th scope="col">Keterangan Hadir</th>
@@ -50,6 +51,7 @@
                         <td>{{ date('d F Y', strtotime($p->tgl))}}</td>
                         <td>{{ $p->pertemuan}}</td>
                         <td>{{ $p->nama_mk}}</td>
+                        <td>{{ $p->grup}}</td>
                         <td>{{ $p->nama}}</td>
                         <td>{{ $p->jam }}</td>
                         <td><div class="badge badge-info">{{$p->kehadiran}}</div></td>

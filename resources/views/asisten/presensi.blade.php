@@ -31,6 +31,7 @@
                         <th scope="col">Tanggal</th>
                         <th scope="col">Pertemuan</th>
                         <th scope="col">Matakuliah</th>
+                        <th scope="col">Grup</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
@@ -41,14 +42,14 @@
                       <td>{{ date('d F Y', strtotime($mhs->tgl)) }}</td>
                       <td>{{ $mhs->pertemuan }}</td>
                       <td>{{ $mhs->nama_mk }}</td>
-                      <td> 
+                      <td>{{ $mhs->grup }}</td>
+                      <td>
                       @if($cd >= 1)
                         <button type="button" class="btn btn-secondary btn-sm" id="btn" disabled>Hadir</button>
-                      @elseif($mhs->tgl == $day++ && $time >= $mhs->jam_mulai && $time <= $mhs->jam_selesai) 
-                          <form action="/mhspresensi" method="POST" class="d-inline">
+                      @elseif($mhs->tgl == $day++ && $time >= $mhs->jam_mulai && $time <= $mhs->jam_selesai)
+                          <form action="{{ url('mhspresensi/'.$mhs->id_absensi) }}" method="POST" class="d-inline">
                           @csrf
-                          <input type="hidden" name="id_detail" value="{{ $mhs->id_detail }}">
-                          <input type="hidden" name="pertemuan" value="{{ $mhs->pertemuan}}">
+                          @method('PUT')
                           <button type="submit" class="btn btn-success btn-sm" id="btn">Hadir</button>
                           </form>
                           @else

@@ -76,7 +76,7 @@ class AsistenController extends Controller
             ->join('users','users.id','=','detail_kelas.id')
             ->join('matkul','matkul.id_mk','=','kelas.id_mk')
             ->where('detail_kelas.id','=',$ambil)
-            ->where('absensi.kehadiran','=','')
+            // ->where('absensi.kehadiran','=','')
             ->get();
 
         $tgl = Absensi::whereDate('absensi.tgl', date('Y-m-d'))->get();
@@ -99,19 +99,15 @@ class AsistenController extends Controller
        ]);
     }
 
-    public function mhspresensi(Request $req){ //klik-absen
+    public function mhspresensi(Request $req, $id){ //klik-absen
 
         $now = Carbon::now();
         $tgl = $now->format('Y-m-d');
         $jam = $now->format('H:i:s');
 
-        Absensi::create([
-            'id_absensi' => $req->id_absensi,
-            'id_detail' => $req->id_detail,
-            'tgl' => $tgl,
+        Absensi::where('id_absensi','=',$id)->update([
             'jam' => $jam,
             'kehadiran' => "hadir",
-            'pertemuan' => $req->pertemuan,
         ]);
         return redirect('/presensi')->with(['successtmbh' => 'Presensi Berhasil']);
     }
