@@ -101,7 +101,7 @@
                     <select class="form-control " name="id">
                     <option value="">Pilih</option>
                     @foreach($users as $user)
-                      <option value="{{ $user->id }}"> {{ $user->nama }} - {{ $user->prodi }}</option>
+                      <option value="{{ $user->id }}"> {{ $user->nama }} - {{ $user->nama_prodi }}</option>
                     @endforeach
                     </select>
                     </div>

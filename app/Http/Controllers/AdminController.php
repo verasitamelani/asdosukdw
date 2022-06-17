@@ -213,7 +213,8 @@ class AdminController extends Controller
     public function dtkelasadd(){
         $matkul = Matakuliah::all();
         $semester = Semester::all();
-        $users = User::where('nama_role','=','dosen')->get();
+        $users = User::join('prodi','prodi.id_prodi','=','users.id_prodi')
+        ->where('nama_role','=','dosen')->get();
         return view('admin.dtkelasadd',compact('matkul','semester', 'users'));
     }
     public function dtkelassave(Request $request){
@@ -234,7 +235,8 @@ class AdminController extends Controller
         $kelas = Kelas::find($id);
         $matkul = Matakuliah::all();
         $semester = Semester::all();
-        $users = User::where('nama_role','=','dosen')->get();
+        $users = User::join('prodi','prodi.id_prodi','=','users.id_prodi')
+        ->where('nama_role','=','dosen')->get();
         return view('admin.dtkelasedit', compact('kelas','matkul','semester', 'users'));
     }
     public function dtkelaseditup(Request $request, $id){
