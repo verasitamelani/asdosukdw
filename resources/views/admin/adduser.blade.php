@@ -38,7 +38,6 @@
                   <label class="col-sm-3 col-form-label">NIM/NIDN</label>
                   <div class="col-sm-4"> <input type="text" class="form-control" name="nim_nidn" required>
                   </div>
-                  {{-- <label> *Info</label> --}}
                 </div>
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label">Nama Lengkap</label>

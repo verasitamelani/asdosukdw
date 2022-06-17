@@ -27,7 +27,7 @@
   </div>
 @endif
 @if ($message = Session::get('eror'))
-  <div class="alert alert-warning">
+  <div class="alert alert-danger">
       <p>{{ $message }}</p>
   </div>
 @endif
@@ -145,7 +145,7 @@
                             });
                             $(".form").html(form);
                         }
-                    });
+                    })
                 });
 
             });

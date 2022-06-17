@@ -74,7 +74,6 @@ class AsistenController extends Controller
             ->join('users','users.id','=','detail_kelas.id')
             ->join('matkul','matkul.id_mk','=','kelas.id_mk')
             ->where('detail_kelas.id','=',$ambil)
-            // ->where('absensi.kehadiran','=','')
             ->orderBy('id_absensi','DESC')->get();
 
         return view('asisten.presensi',[

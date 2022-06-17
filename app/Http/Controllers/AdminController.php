@@ -408,7 +408,7 @@ class AdminController extends Controller
     }
 
     public function finalisasihasil(Request $req){
-        if(count($req->jum_hr)>0){
+        if(!empty($req->jum_hr)){
             for($i=0; $i<count($req->jum_hr); $i++){
                 $data = array(
                     'total_hadir'=>$req->total_hadir[$i],
@@ -428,7 +428,7 @@ class AdminController extends Controller
                 Gaji::create($data);
             }
         }else{
-            return redirect()->back()->with('eror', 'Data Tidak Ada');
+            return redirect()->back()->with('eror', 'Data pada bulan tersebut tidak ada');
         }
             return redirect()->back()->with('successtambah', 'Data Berhasil Ditambahkan');
     }

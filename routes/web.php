@@ -21,7 +21,6 @@ use App\Http\Controllers\AdminController;
 Route::get('/', [LoginController::class, 'index']);
 Route::post('/',[LoginController::class,'authenticate']);
 
-// Route::post('/logout',[LoginController::class,'logout']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 //asisten dosen
