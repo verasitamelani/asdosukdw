@@ -47,6 +47,15 @@
                   <p class="text-danger">*isikan tahun ajaran, contoh : 2019/2020</p>
                 </div>
                 <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Status Semester</label>
+                <div class="col-sm-4">
+                  <select class="form-control" name="status">
+                    <option>aktif</option>
+                    <option>tidak aktif</option>
+                  </select>
+                </div>
+              </div>
+                <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Keterangan Semester</label>
                     <div class="col-sm-4">
                     <select class="form-control" name="ket_smt">
@@ -55,7 +64,7 @@
                     </select>
                     </div>
                 </div>
-              </div>
+            
               <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary">Simpan</button>
               </div>

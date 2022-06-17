@@ -50,6 +50,7 @@
                         <th scope="col">Nama</th>
                         <th scope="col">Tahun</th>
                         <th scope="col">Keterangan</th>
+                        <th scope="col">Status Aktif</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
@@ -60,6 +61,7 @@
                         <td>Semester {{$s->nama_smt}}</td>
                         <td>{{$s->tahun}}</td>
                         <td>Semester {{$s->ket_smt}}</td>
+                        <td>{{$s->status}}</td>
                         <td><a href="editsmt/{{ $s->id_smt }}" type="button" class="btn btn-warning btn-sm">Edit</a>
                             <a href="delsmt/{{ $s->id_smt }}" type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </td>

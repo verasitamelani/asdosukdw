@@ -56,6 +56,14 @@
                     </select>
                     </div>
                 </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Status Semester</label>
+                  <div class="col-sm-4">
+                  <select class="form-control" name="status">
+                    <option value="aktif"{{$smt->status == "aktif" ? 'selected': '' }}> aktif</option>
+                    <option value="tidak aktif" {{$smt->status == "tidak aktif" ? 'selected' : '' }}> tidak aktif</option>
+                  </select>
+                </div>
               </div>
               <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary">Simpan</button>

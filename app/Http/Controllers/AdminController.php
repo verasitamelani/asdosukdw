@@ -91,6 +91,7 @@ class AdminController extends Controller
             'nama_smt' => 'required',
             'tahun' => 'required',
             'ket_smt' => 'required',
+            'status' => 'required'
         ]);
         Semester::create($r->all());
         return redirect('/dtsmt')->with('successtmbh', 'Data Berhasil Ditambahkan');
@@ -106,6 +107,7 @@ class AdminController extends Controller
             'nama_smt' => 'required',
             'tahun' => 'required',
             'ket_smt' => 'required',
+            'status'=> 'required',
         ]);
         Semester::find($id)->update($r->all());
         return redirect('/dtsmt')->with('successedit', 'Data Berhasil Diubah');
