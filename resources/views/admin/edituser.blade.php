@@ -24,7 +24,7 @@
 <section class="section">
     <div class="section-body">
         <ul class="breadcrumb mb-2">
-            <h1 class="section-title"><a href="/dtmhsdsn" class="text-dark">Data Asisten dan Dosen</a> > </h1>
+            <h1 class="section-title"><a href="/admin" class="text-dark">Data Asisten dan Dosen</a> > </h1>
             <h1 class="section-title text-warning"> Edit Data</h1>
         </ul>
         <div class="card mt-0">

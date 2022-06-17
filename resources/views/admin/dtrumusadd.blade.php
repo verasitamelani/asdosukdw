@@ -24,7 +24,7 @@
   <section class="section">
     <div class="section-body">
         <ul class="breadcrumb mb-2">
-            <h1 class="section-title"><a href="/dtmk" class="text-dark">Data Rumus</a> > </h1>
+            <h1 class="section-title"><a href="/dtrms" class="text-dark">Data Rumus</a> > </h1>
             <h1 class="section-title text-warning"> Tambah Data</h1>
         </ul>
         <div class="card mt-0">
@@ -67,14 +67,14 @@
                     <div class="col-sm-4">
                       <input type="text" class="form-control" name="pajak1" placeholder="0.05" required>
                     </div>
-                    <label class="text-danger"> *diisi 0.05 untuk 50%</label>
+                    <label class="text-danger"> *diisi 0.05 untuk 5%</label>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Pajak 2</label>
                     <div class="col-sm-4">
                       <input type="text" class="form-control" name="pajak2" placeholder="0.5" required>
                     </div>
-                    <label class="text-danger"> *diisi 0.5 untuk 5%</label>
+                    <label class="text-danger"> *diisi 0.5 untuk 50%</label>
                 </div>
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-primary">Simpan</button>

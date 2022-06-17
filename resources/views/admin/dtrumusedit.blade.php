@@ -67,14 +67,14 @@
                     <div class="col-sm-4">
                       <input type="text" class="form-control" name="pajak1" value="{{ $rumus->pajak1 }}"  required>
                     </div>
-                    <label class="text-danger"> *diisi 0.05 untuk 50%</label>
+                    <label class="text-danger"> *diisi 0.05 untuk 5%</label>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Pajak 2</label>
                     <div class="col-sm-4">
                       <input type="text" class="form-control" name="pajak2" value="{{ $rumus->pajak2 }}"  required>
                     </div>
-                    <label class="text-danger"> *diisi 0.5 untuk 5%</label>
+                    <label class="text-danger"> *diisi 0.5 untuk 50%</label>
                   </div>
               <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary">Simpan</button>

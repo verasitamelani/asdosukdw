@@ -314,7 +314,8 @@ class AdminController extends Controller
         ->join('users','users.id','=','detail_kelas.id')
         ->join('matkul','matkul.id_mk','=','kelas.id_mk')
         ->join('prodi','prodi.id_prodi','=','matkul.id_prodi')
-        ->where('matkul.id_prodi','=',$id)->paginate(10);
+        ->where('matkul.id_prodi','=',$id)
+        ->orderBy('id_absensi', 'DESC')->paginate(10);
 
         $prodi = Prodi::where('id_prodi','=',$id)
         ->get();
