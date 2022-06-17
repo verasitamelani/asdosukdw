@@ -64,7 +64,11 @@
                         <th scope="row">{{ ++$no + ($mk->currentPage()-1) * $mk->perPage() }}</th>
                         <td>{{ $matkul-> kode_mk}}</td>
                         <td>{{ $matkul-> nama_mk }}</td>
-                        <td>{{ $matkul-> jenis_mk }}</td>
+                        <td>@if($matkul->jenis_mk == 1) {{ "Praktikum"}}
+                        @else
+                        {{ "Teori" }}
+                        @endif
+                        </td>
                         <td>{{ $matkul-> nama_prodi }}</td>
                         <td><a href="dtmkedit/{{ $matkul->id_mk }}" type="button" class="btn btn-warning btn-sm">Edit</a>
                             <a href="delmk/{{ $matkul->id_mk }}" type="button" class="btn btn-danger btn-sm">Delete</a>
