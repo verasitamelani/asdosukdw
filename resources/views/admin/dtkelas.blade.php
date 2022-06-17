@@ -63,7 +63,7 @@
                       <tr>
                         <th scope="row">{{ ++$no + ($kelas->currentPage()-1) * $kelas->perPage() }}</th>
                         <td>{{ $kls->nama_mk }}</td>
-                        <td>{{ $kls->nama_smt }}</td>
+                        <td>{{ $kls->ket_smt }} {{ $kls->tahun }}</td>
                         <td>{{ $kls->sks }}</td>
                         <td>{{ $kls->grup }}</td>
                         <td>{{ $kls->hari }}</td>
